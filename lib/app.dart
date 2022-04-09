@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'screens/location_details/location_details.dart';
+import 'route_generator.dart';
 import 'style.dart';
+
+const LocationsRoute = '/';
+const LocationDetailsRoute = '/location_details';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -9,17 +12,15 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: LocationDetails(),
-        theme: ThemeData(
-            appBarTheme: AppBarTheme(
-                toolbarTextStyle: const TextTheme().bodyText2,
-                titleTextStyle: const TextTheme().headline6
-            ),
-          textTheme: TextTheme(
-            titleMedium: TitleTextStyle,
-            bodyMedium: Body1TextStyle
-          )
-        )
-    );
+        onGenerateRoute: RouteGenerator.routeGenerator, theme: _theme());
+  }
+
+  ThemeData _theme() {
+    return ThemeData(
+        appBarTheme: AppBarTheme(
+            toolbarTextStyle: const TextTheme().bodyText2,
+            titleTextStyle: const TextTheme().headline6),
+        textTheme: const TextTheme(
+            titleMedium: TitleTextStyle, bodyMedium: Body1TextStyle));
   }
 }
