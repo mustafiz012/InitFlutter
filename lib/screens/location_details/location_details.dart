@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
 
+import '../../models/location.dart';
 import 'image_banner.dart';
 import 'text_section.dart';
 
 class LocationDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final locations = Location.fetchAll();
+    final location = locations.first;
+
     return Scaffold(
         appBar: AppBar(
-          title: Text('Init Flutter'),
+          title: Text(location.name),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ImageBanner("assets/images/test.jpeg"),
-            TextSection('Bangla', 'Bangla is my mother tongue'),
-            TextSection('English', 'English is my second Language'),
-            TextSection('Others', 'I do not understand any other languages')
+            ImageBanner(location.imagePath), ...textSections(location),
           ],
         ));
+  }
+
+  List<Widget> textSections(Location location){
+    return location.facts.map((fact) => TextSection(fact.title, fact.text)).toList();
   }
 }
