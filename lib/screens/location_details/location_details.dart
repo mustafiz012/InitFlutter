@@ -16,13 +16,16 @@ class LocationDetails extends StatelessWidget {
         appBar: AppBar(
           title: Text(location.name),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            ImageBanner(location.imagePath),
-            ...textSections(location),
-          ],
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(0.0, 0.0, 00, 20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              ImageBanner(location.imagePath),
+              ...textSections(location),
+            ],
+          ),
         ));
   }
 
