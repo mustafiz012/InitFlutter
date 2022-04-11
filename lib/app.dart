@@ -12,7 +12,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        onGenerateRoute: RouteGenerator.routeGenerator, theme: _theme());
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: RouteGenerator.routeGenerator,
+        theme: _theme());
   }
 
   ThemeData _theme() {
