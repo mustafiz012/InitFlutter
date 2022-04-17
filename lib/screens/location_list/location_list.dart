@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
@@ -33,7 +33,7 @@ class Locations extends StatelessWidget {
   }
 
   _onLocationTap(BuildContext context, int locationId) {
-    log(locationId);
+    log("$locationId");
     Navigator.pushNamed(context, routes.kLocationDetailsRoute,
         arguments: ScreenArguments(locationId, ""));
   }

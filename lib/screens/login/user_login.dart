@@ -1,8 +1,8 @@
-import 'dart:developer';
-
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fluttering/screens/location_list/location_list.dart';
+
+import '../../routes.dart' as routes;
 
 class UserLogin extends StatefulWidget {
   const UserLogin({Key? key}) : super(key: key);
@@ -94,7 +94,11 @@ class _UserLoginState extends State<UserLogin> {
                         ElevatedButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          Locations('Locations')));
                             }
                           },
                           style: ElevatedButton.styleFrom(
@@ -116,21 +120,8 @@ class _UserLoginState extends State<UserLogin> {
                             const Text('Not registered yet?'),
                             TextButton(
                                 onPressed: () {
-                                  /*Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const RegisterPage(title: 'Register UI'),
-                              ),
-                            );*/
-                                  Fluttertoast.showToast(
-                                      msg: "Register an account",
-                                      toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.CENTER,
-                                      timeInSecForIosWeb: 1,
-                                      backgroundColor: Colors.white,
-                                      textColor: Colors.black,
-                                      fontSize: 16.0);
+                                  Navigator.pushNamed(
+                                      context, routes.kUserRegistrationRoute);
                                 },
                                 child: const Text('Create an account')),
                           ],
