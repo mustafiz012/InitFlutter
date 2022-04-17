@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'route_generator.dart';
+import 'routes.dart' as routes;
 import 'style.dart';
-
-const LocationsRoute = '/';
-const LocationDetailsRoute = '/location_details';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -13,6 +11,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
+        initialRoute: routes.kUserLoginRoute,
         onGenerateRoute: RouteGenerator.routeGenerator,
         theme: _theme());
   }
@@ -23,6 +22,8 @@ class App extends StatelessWidget {
             toolbarTextStyle: const TextTheme().bodyText2,
             titleTextStyle: const TextTheme().headline6),
         textTheme: const TextTheme(
-            titleMedium: TitleTextStyle, bodyMedium: Body1TextStyle));
+            titleLarge: TitleTextStyle,
+            titleMedium: Body1TextStyle,
+            bodyMedium: Body1TextStyle));
   }
 }

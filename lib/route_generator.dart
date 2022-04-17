@@ -7,6 +7,7 @@ import 'routes.dart' as routes;
 import 'screens/home_screen/home_screen.dart';
 import 'screens/location_details/location_details.dart';
 import 'screens/location_list/location_list.dart';
+import 'screens/login/user_login.dart';
 
 class RouteGenerator {
   static _routePage(Widget screen, RouteSettings settings) {
@@ -22,6 +23,9 @@ class RouteGenerator {
   static Route<dynamic>? routeGenerator(RouteSettings settings) {
     Widget screen;
     switch (settings.name) {
+      case routes.kUserLoginRoute:
+        screen = const UserLogin();
+        return _routePage(screen, settings);
       case routes.kLocationsRoute:
         screen = Locations('Locations');
         return _routePage(screen, settings);

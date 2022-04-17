@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:fluttering/app.dart';
 
 import '../../models/location.dart';
 import '../../models/screen_arguments.dart';
+import '../../routes.dart' as routes;
 
 class Locations extends StatelessWidget {
   final String _title;
@@ -34,7 +34,7 @@ class Locations extends StatelessWidget {
 
   _onLocationTap(BuildContext context, int locationId) {
     log(locationId);
-    Navigator.pushNamed(context, LocationDetailsRoute,
+    Navigator.pushNamed(context, routes.kLocationDetailsRoute,
         arguments: ScreenArguments(locationId, ""));
   }
 }
