@@ -9,7 +9,7 @@ import '../../routes.dart' as routes;
 class Locations extends StatelessWidget {
   final String _title;
 
-  Locations(this._title, {Key? key}) : super(key: key);
+  const Locations(this._title, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

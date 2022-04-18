@@ -10,3 +10,9 @@ const double kDefaultCircularBorderRadius = 10.0;
 const double kDefaultSpaceHeight = 20.0;
 const double kPadding10 = 10.0;
 const double kPadding60 = 60.0;
+
+const kLargeTextSize = 26.0;
+const kMediumTextSize = 20.0;
+const kBodyTextSize = 16.0;
+
+const String kFontNameDefault = 'Montserrat';

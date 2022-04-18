@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'route_generator.dart';
-import 'routes.dart' as routes;
-import 'style.dart';
+import 'style.dart' as theme;
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -21,8 +20,8 @@ class App extends StatelessWidget {
             toolbarTextStyle: const TextTheme().bodyText2,
             titleTextStyle: const TextTheme().headline6),
         textTheme: const TextTheme(
-            titleLarge: TitleTextStyle,
-            titleMedium: Body1TextStyle,
-            bodyMedium: Body1TextStyle));
+            titleLarge: theme.kTitleTextStyle,
+            titleMedium: theme.kBody1TextStyle,
+            bodyMedium: theme.kBody1TextStyle));
   }
 }
