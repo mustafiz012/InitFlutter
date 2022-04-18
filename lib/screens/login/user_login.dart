@@ -1,7 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttering/screens/location_list/location_list.dart';
 
+import '../../constants.dart' as constants;
 import '../../routes.dart' as routes;
 
 class UserLogin extends StatefulWidget {
@@ -22,20 +22,20 @@ class _UserLoginState extends State<UserLogin> {
         body: ListView(
           children: [
             Container(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(constants.kDefaultPadding),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   const SizedBox(
-                    height: 60,
+                    height: constants.kPadding60,
                   ),
                   const Text(
                     'Sign In',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
                   ),
                   const SizedBox(
-                    height: 60,
+                    height: constants.kPadding60,
                   ),
                   Form(
                     key: _formKey,
@@ -51,12 +51,13 @@ class _UserLoginState extends State<UserLogin> {
                             hintText: "Enter your email",
                             prefixIcon: const Icon(Icons.email),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(
+                                  constants.kDefaultCircularBorderRadius),
                             ),
                           ),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: constants.kDefaultSpaceHeight,
                         ),
                         TextFormField(
                           validator: (value) {
@@ -72,7 +73,8 @@ class _UserLoginState extends State<UserLogin> {
                             prefixIcon: const Icon(Icons.lock),
                             hintText: 'Enter your password',
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(
+                                  constants.kDefaultCircularBorderRadius),
                             ),
                           ),
                         ),
@@ -89,16 +91,13 @@ class _UserLoginState extends State<UserLogin> {
                           controlAffinity: ListTileControlAffinity.leading,
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: constants.kDefaultSpaceHeight,
                         ),
                         ElevatedButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          Locations('Locations')));
+                              Navigator.popAndPushNamed(
+                                  context, routes.kLocationListRoute);
                             }
                           },
                           style: ElevatedButton.styleFrom(
@@ -112,7 +111,7 @@ class _UserLoginState extends State<UserLogin> {
                           ),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: constants.kDefaultSpaceHeight,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -120,7 +119,7 @@ class _UserLoginState extends State<UserLogin> {
                             const Text('Not registered yet?'),
                             TextButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(
+                                  Navigator.popAndPushNamed(
                                       context, routes.kUserRegistrationRoute);
                                 },
                                 child: const Text('Create an account')),

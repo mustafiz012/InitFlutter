@@ -30,7 +30,7 @@ class RouteGenerator {
       case routes.kUserRegistrationRoute:
         screen = const UserRegistration();
         return _routePage(screen, settings);
-      case routes.kLocationsRoute:
+      case routes.kLocationListRoute:
         screen = Locations('Locations');
         return _routePage(screen, settings);
       case routes.kHomeScreenRoute:
