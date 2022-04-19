@@ -13,7 +13,20 @@ class UserLogin extends StatefulWidget {
 
 class _UserLoginState extends State<UserLogin> {
   final _formKey = GlobalKey<FormState>();
+  var _isPasswordVisible = false;
   var rememberValue = false;
+  final textFieldFocusNode = FocusNode();
+
+  void _toggleObscured() {
+    setState(() {
+      _isPasswordVisible = !_isPasswordVisible;
+      if (textFieldFocusNode.hasPrimaryFocus) {
+        return;
+      } // If focus is on text field, don't un-focus
+      textFieldFocusNode.canRequestFocus =
+          false; // Prevents focus if tap on eye
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,10 +81,19 @@ class _UserLoginState extends State<UserLogin> {
                             }
                           },
                           maxLines: 1,
-                          obscureText: true,
+                          obscureText: _isPasswordVisible,
+                          focusNode: textFieldFocusNode,
                           decoration: InputDecoration(
                             prefixIcon: const Icon(Icons.lock),
                             hintText: 'Enter your password',
+                            suffixIcon: IconButton(
+                              icon: Icon((_isPasswordVisible)
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                              onPressed: () {
+                                _toggleObscured();
+                              },
+                            ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(
                                   constants.kDefaultCircularBorderRadius),

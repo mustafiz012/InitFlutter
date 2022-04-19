@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import '../../routes.dart' as routes;
 
 import '../../constants.dart' as constants;
+import '../../widgets/password_field.dart';
+import '../../routes.dart' as routes;
 
 class UserRegistration extends StatefulWidget {
   const UserRegistration({Key? key}) : super(key: key);
@@ -13,6 +16,8 @@ class UserRegistration extends StatefulWidget {
 
 class _UserRegistrationState extends State<UserRegistration> {
   final _formKey = GlobalKey<FormState>();
+  late String _password;
+  final _passwordFieldKey = GlobalKey<FormFieldState<String>>();
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +96,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                               : 'Please enter a valid email',
                           maxLines: 1,
                           autofillHints: const [AutofillHints.email],
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           decoration: InputDecoration(
                               hintText: 'Enter your email',
                               prefixIcon: const Icon(Icons.email),
@@ -101,21 +107,25 @@ class _UserRegistrationState extends State<UserRegistration> {
                         const SizedBox(
                           height: constants.kDefaultSpaceHeight,
                         ),
-                        TextFormField(
-                          validator: (password) {
-                            if (password == null || password.isEmpty) {
+                        PasswordField(
+                          fieldKey: _passwordFieldKey,
+                          labelText: 'Password *',
+                          onFieldSubmitted: (String value) {
+                            setState(() {
+                              _password = value;
+                            });
+                          },
+                          hintText: 'Enter your password',
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
                               return 'Please enter your password';
                             } else {
                               return null;
                             }
                           },
-                          maxLines: 1,
-                          decoration: InputDecoration(
-                              hintText: 'Enter your password',
-                              prefixIcon: const Icon(Icons.lock),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(
-                                      constants.kDefaultCircularBorderRadius))),
+                          onSaved: (String? newValue) {
+                            log('onSaved: $newValue');
+                          },
                         ),
                         const SizedBox(
                           height: constants.kPadding60,
@@ -123,6 +133,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                         ElevatedButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
+
                               Navigator.popAndPushNamed(
                                   context, routes.kLocationListRoute);
                             }
